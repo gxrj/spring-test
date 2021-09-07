@@ -1,13 +1,14 @@
 package com.teste.app.DTOs;
 
-public class ResponseDTO {
-    private String mensagem;
-    private Object dados;
+import java.io.Serializable;
 
-    public ResponseDTO( String mensagem, Object dados ){
+public class ResponseDTO<Type> implements Serializable{
+
+    public String mensagem;
+    public Type dados;
+
+    public ResponseDTO( String mensagem, Type dados ){
         this.mensagem = mensagem;
         this.dados = dados;
     }
-    public String getMensagem(){ return this.mensagem; }
-    public Object getDados(){ return this.dados; }
 }

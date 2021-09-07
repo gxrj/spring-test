@@ -36,7 +36,7 @@ public class Usuario {
 
     @Override
     public String toString(){
-        return String.format( "Usuario[ login=%s, nome=%s ]", login, nome );
+        return String.format( "Usuario [ login = %s, nome = %s ]", login, nome );
     }
 
     public UUID getId(){ return this.id; }

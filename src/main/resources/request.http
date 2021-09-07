@@ -1,0 +1,19 @@
+### Cadastro
+POST http://localhost:8080/cadastro
+Content-Type: application/json
+
+{
+    "login": "0",
+    "nome":"gustavo",
+    "senha":"123"
+}
+
+### Login
+
+POST http://localhost:8080/autenticacao
+Content-Type: application/json
+
+{
+    "login": "0",
+    "senha":"123"
+}

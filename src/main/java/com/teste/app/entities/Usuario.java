@@ -8,14 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-
 @Entity
-@Getter
-@Setter
-@EqualsAndHashCode
 public class Usuario {
 
     @Id
@@ -32,6 +25,7 @@ public class Usuario {
     @Column( name = "senha", nullable = false )
     private String senha;
 
+
     protected Usuario() { }
 
     public Usuario( String login, String nome, String senha ) {
@@ -40,6 +34,7 @@ public class Usuario {
         this.senha = senha ;
     }
 
+    public void setSenha( String senha){ this.senha = senha; }
     @Override
     public String toString(){
         return String.format( "Usuario [ login = %s, nome = %s ]", login, nome );

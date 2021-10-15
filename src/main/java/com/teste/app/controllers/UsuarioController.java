@@ -4,11 +4,11 @@ import javax.ws.rs.core.MediaType;
 
 import com.teste.app.DTOs.CadastroDTO;
 import com.teste.app.DTOs.CredencialDTO;
-import com.teste.app.DTOs.ResponseDTO;
 import com.teste.app.DTOs.UsuarioDTO;
 import com.teste.app.entities.Usuario;
-import com.teste.app.repository.UsuarioRepository;
+import com.teste.app.repositories.UsuarioRepository;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,29 +17,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder encoder; /** Injecao atraves do Bean getPasswordEncoder() declarado em AppSecurityConfig */
 
-    public UsuarioController( UsuarioRepository usuarioRepository ) {
+    public UsuarioController( UsuarioRepository usuarioRepository, PasswordEncoder encoder ) {
         this.usuarioRepository = usuarioRepository;
+        this.encoder = encoder;
     }
-    
 
     @PostMapping( value = "/cadastro", 
                   consumes = MediaType.APPLICATION_JSON,
                   produces = MediaType.APPLICATION_JSON )
 
-    public ResponseDTO<String> register( @RequestBody CadastroDTO cadastro ){
+    public String register( @RequestBody CadastroDTO cadastro ){
 
-        Usuario user = this.usuarioRepository.findByLogin( cadastro.login );
+        Boolean vazio = this.usuarioRepository.findByLogin( cadastro.login ).isEmpty();
 
-        if( user != null ) return new ResponseDTO<String>( "erro", "duplicidade" );
+        if( !vazio ) return "erro, duplicidade" ;
         
-        user = new Usuario(cadastro.login, cadastro.nome, cadastro.getSenha() );
-        this.usuarioRepository.save( user );
-        /**Validar senhas */ 
+        Usuario user = new Usuario( cadastro.login, cadastro.nome, this.encoder.encode( cadastro.getSenha() ) );
 
-        return new ResponseDTO<String>( "sucesso", "cadastrado com sucesso" );
+        this.usuarioRepository.save( user ) ;
 
-        
+        return "sucesso, cadastrado com sucesso" ;  
     }
 
 
@@ -48,11 +47,11 @@ public class UsuarioController {
                   produces = MediaType.APPLICATION_JSON )
     
     public Object login( @RequestBody CredencialDTO credenciais ){
-        Usuario user = this.usuarioRepository.findByLogin( credenciais.login );
+        Usuario user = this.usuarioRepository.findByLogin( credenciais.login ).get() ;
 
-        if( user != null && user.getSenha().equals( credenciais.getSenha() ) )
+        if( user != null && this.encoder.matches( credenciais.getSenha(), user.getSenha() ) )
             return new UsuarioDTO( user.getLogin(), user.getNome(), user.getSenha() ) ;
         
-        return new ResponseDTO<String>("erro", "login ou senha incorreto(s)" );
+        return "erro, login ou senha incorreto(s)" ;
     }
 }

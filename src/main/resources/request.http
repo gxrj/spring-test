@@ -17,3 +17,22 @@ Content-Type: application/json
     "login": "0",
     "senha":"123"
 }
+
+### Teste
+
+POST http://localhost:8080/teste
+Content-Type: application/json
+
+{
+
+}
+
+
+### Token
+
+POST http://localhost:8080/oauth/token
+Content-Type: application/json
+
+{
+
+}

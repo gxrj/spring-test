@@ -17,7 +17,7 @@ public class ResourceServerConfig {
     SecurityFilterChain securityFilterChain( HttpSecurity http ) throws Exception{
         http
         .authorizeRequests( 
-            a -> a.antMatchers( "/login", "/cadastro" )
+            a -> a.mvcMatchers( "/login", "/cadastro" )
                         .permitAll()
                   .anyRequest().authenticated() )
         .exceptionHandling( 

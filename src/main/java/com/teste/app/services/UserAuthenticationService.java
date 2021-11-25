@@ -1,12 +1,11 @@
 package com.teste.app.services;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
+import com.teste.app.configs.UserSecurityConfigMapping;
 import com.teste.app.entities.Usuario;
 import com.teste.app.repositories.UsuarioRepository;
 
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,8 +27,6 @@ public class UserAuthenticationService implements UserDetailsService {
         
         Usuario usuario = usuarioOptional.get();
 
-        /** Returns a default spring User class that implements UserDetails 
-         * to learn more check org.springframework.security.core.userdetails.User */
-        return new User( usuario.getLogin(), usuario.getSenha(), new ArrayList<>() );
+        return new UserSecurityConfigMapping( usuario );
     }
 }

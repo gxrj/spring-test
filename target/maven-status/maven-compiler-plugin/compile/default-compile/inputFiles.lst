@@ -1,0 +1,13 @@
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/configs/oauth2/ResourceServerConfig.java
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/DTOs/CadastroDTO.java
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/DTOs/CredencialDTO.java
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/entities/Usuario.java
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/configs/UserSecurityConfigMapping.java
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/controllers/UsuarioController.java
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/configs/oauth2/AuthorizationServerConfig.java
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/DTOs/UsuarioDTO.java
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/repositories/UsuarioRepository.java
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/services/UserAuthenticationService.java
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/App.java
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/controllers/TesteController.java
+/home/gxrj/Develop/Spring/spring-test/src/main/java/com/teste/app/configs/AppSecurityConfig.java

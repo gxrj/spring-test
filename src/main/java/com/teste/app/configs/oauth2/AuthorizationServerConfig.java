@@ -28,7 +28,6 @@ import org.springframework.security.oauth2.server.authorization.config.ProviderS
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@Import( OAuth2AuthorizationServerConfiguration.class )
 public class AuthorizationServerConfig {
 
     @Value( "${oauth2.client-id}" )
@@ -40,16 +39,18 @@ public class AuthorizationServerConfig {
     @Value( "${oauth2.authorization-server-address}" )
     private String authorizationServerAddress;
 
-    /** Intercepta a cadeia de filtros do spring security
-     *  determinando quais rotas devem ser protegidas pelo authorization server 
-     *  e definindo quais dos seus mecanismos de segurança devem ser ativados,
-     *  através do método applyDefaultSecurity
-     *   */
+  /**
+     * Returns a SecurityFilterChain instance customized with 
+     * OAuth2AuthorizationServer configurations and other security settings.
+     * @param HttpSecurity instance
+     * @return SecurityFilterChain instance
+     * @exception Exception
+     */
     @Bean
     @Order( Ordered.HIGHEST_PRECEDENCE )
-    public SecurityFilterChain authServeSecurityFilterChain( HttpSecurity http) throws Exception{
+    public SecurityFilterChain createSecurityFilterChainBean( HttpSecurity http) throws Exception{
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity( http );
-        return http.formLogin().disable().build();
+        return http.build();
     }
 
     /** Define informações sobre o cliente, o mecanismo de salvamento dessas informações

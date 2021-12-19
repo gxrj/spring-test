@@ -27,7 +27,7 @@ import org.springframework.security.oauth2.server.authorization.client.Registere
 import org.springframework.security.oauth2.server.authorization.config.ProviderSettings;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
+@Configuration( proxyBeanMethods = false ) 
 public class AuthorizationServerConfig {
 
     @Value( "${oauth2.client-id}" )

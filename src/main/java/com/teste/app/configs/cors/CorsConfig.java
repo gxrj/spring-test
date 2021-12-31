@@ -3,11 +3,12 @@ package com.teste.app.configs.cors;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 
-
+@Configuration
 public class CorsConfig implements CorsConfigurationSource{
 
     @Override
